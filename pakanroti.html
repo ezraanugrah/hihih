@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BreadCycle - Ubah Sisa Roti Jadi Pakan Bernilai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Konfigurasi Tailwind CSS dengan palet warna kustom -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cream-tepung': '#FFF8E1',
+                        'gandum': '#F9A825',
+                        'hijau-alam': '#2E7D32',
+                        'hijau-alam-dark': '#256528',
+                        'coklat-organik': '#5D4037',
+                        // 10% opacity for #2E7D32 (Hijau Alam Super Light)
+                        'hijau-alam-light-10': 'rgba(46, 125, 50, 0.1)',
+                        // 10% opacity for #5D4037 (Coklat Organik Muda)
+                        'coklat-organik-light-10': 'rgba(93, 64, 55, 0.1)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Gaya dasar untuk memastikan font Inter digunakan */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        /* Custom styles for hover effects on buttons */
+        .btn-gandum:hover {
+            background-color: #e8951e; /* Slightly darker gandum */
+        }
+        .btn-hijau-alam:hover {
+            background-color: #256528; /* Hijau Alam Dark */
+        }
+        /* Custom animation for the cycle arrow */
+        @keyframes pulse-grow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        .animate-pulse-grow {
+            animation: pulse-grow 1.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Hero Section -->
+    <header class="bg-cream-tepung py-16 md:py-24 overflow-hidden relative">
+        <div class="container mx-auto px-4 max-w-7xl relative z-10">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+                
+                <!-- Text and Buttons -->
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight text-hijau-alam">
+                        Ubah Sisa Roti Jadi Pakan Bernilai
+                    </h1>
+                    <p class="text-xl sm:text-2xl mb-8 text-coklat-organik max-w-lg mx-auto lg:mx-0">
+                        Platform yang menghubungkan toko roti dan peternak untuk mengurangi limbah & menekan biaya pakan.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#" class="btn-hijau-alam text-white font-bold py-3 px-8 rounded-xl shadow-lg transition duration-300 transform hover:scale-[1.02] bg-hijau-alam">
+                            Mulai Jual Roti
+                        </a>
+                        <a href="#" class="text-coklat-organik border-2 border-coklat-organik font-bold py-3 px-8 rounded-xl transition duration-300 transform hover:bg-coklat-organik hover:text-white">
+                            Cari Pakan Murah
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visual/Illustration: Roti Sisa -> Recycle -> Ternak -->
+                <div class="lg:w-1/2 mt-10 lg:mt-0 relative">
+                    <div class="bg-white p-6 rounded-3xl shadow-2xl shadow-gandum/30 border-4 border-gandum/50">
+                        <div class="flex items-center justify-between space-x-2 sm:space-x-4">
+                            
+                            <!-- 1. Roti Sisa -->
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="Gambar/roti-roti.jpeg" 
+                                     alt="Ilustrasi Roti Sisa" 
+                                     class="w-full max-w-[120px] h-auto rounded-xl border-2 border-coklat-organik mb-2 transition duration-300 hover:scale-105"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/120x120/FFF8E1/5D4037?text=Roti+Sisa';"
+                                >
+                                <p class="text-xs sm:text-sm font-semibold text-coklat-organik">Roti Sisa dan Expired</p>
+                            </div>
+                            
+                            <!-- Arrow 1 (Recycle) -->
+                            <div class="w-auto">
+                                <svg class="w-8 h-8 sm:w-12 sm:h-12 text-hijau-alam animate-pulse-grow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </div>
+
+                            <!-- 2. Proses Daur Ulang/Platform -->
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="Gambar/proses pembuatan pakan roti.jpeg" 
+                                     alt="Ilustrasi Proses BreadCycle" 
+                                     class="w-full max-w-[120px] h-auto rounded-xl border-2 border-hijau-alam mb-2 transition duration-300 hover:scale-105"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/120x120/2E7D32/FFFFFF?text=BreadCycle+Proses';"
+                                >
+                                <p class="text-xs sm:text-sm font-semibold text-hijau-alam">Proses pembuatan Pakan Roti</p>
+                            </div>
+                            
+                            <!-- Arrow 2 (Pakan) -->
+                            <div class="w-auto">
+                                <svg class="w-8 h-8 sm:w-12 sm:h-12 text-hijau-alam animate-pulse-grow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </div>
+
+                            <!-- 3. Pakan Ternak -->
+                            <div class="flex flex-col items-center w-1/3">
+                                <img src="Gambar/dedak roti.jpeg" 
+                                     alt="Ilustrasi Ternak (Ayam/Sapi)" 
+                                     class="w-full max-w-[120px] h-auto rounded-xl border-2 border-gandum mb-2 transition duration-300 hover:scale-105"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/120x120/F9A825/5D4037?text=Pakan+Ternak';"
+                                >
+                                <p class="text-xs sm:text-sm font-semibold text-gandum">Pakan Jadi</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Aksen garis melengkung warna Gandum #F9A825 -->
+        <svg class="absolute bottom-0 left-0 w-full h-auto text-gandum/50 hidden lg:block" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" fill-opacity="0.3" d="M0,192L48,165.3C96,139,192,85,288,90.7C384,96,480,160,576,176C672,192,768,160,864,138.7C960,117,1056,107,1152,117.3C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <!-- 2. How It Works (3 Tahap) -->
+    <section class="py-16 bg-cream-tepung">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-hijau-alam">Bagaimana BreadCycle Bekerja?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Upload Sisa Roti -->
+                <div class="bg-white p-6 md:p-8 rounded-xl border border-gandum/50 shadow-md transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <div class="w-12 h-12 mb-4 mx-auto md:mx-0 text-hijau-alam">
+                        <!-- Icon Upload -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-coklat-organik text-center md:text-left">1. Upload Sisa Roti</h3>
+                    <p class="text-gray-600 text-center md:text-left">Toko roti memposting detail sisa roti harian yang layak diolah menjadi pakan.</p>
+                </div>
+
+                <!-- Card 2: Dipilih Peternak -->
+                <div class="bg-white p-6 md:p-8 rounded-xl border border-gandum/50 shadow-md transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <div class="w-12 h-12 mb-4 mx-auto md:mx-0 text-hijau-alam">
+                        <!-- Icon Handshake/Deal -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-coklat-organik text-center md:text-left">2. Dipilih Peternak</h3>
+                    <p class="text-gray-600 text-center md:text-left">Peternak menemukan roti sisa yang dibutuhkan dan mengajukan tawaran untuk membelinya.</p>
+                </div>
+
+                <!-- Card 3: Pickup / Delivery -->
+                <div class="bg-white p-6 md:p-8 rounded-xl border border-gandum/50 shadow-md transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <div class="w-12 h-12 mb-4 mx-auto md:mx-0 text-hijau-alam">
+                        <!-- Icon Delivery/Truck -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zm1-8h.01M17 13h.01"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-coklat-organik text-center md:text-left">3. Pickup / Delivery</h3>
+                    <p class="text-gray-600 text-center md:text-left">Roti dijemput (pickup) oleh peternak, atau diantar (delivery) sesuai kesepakatan.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Produk Roti untuk Pakan (Mockup List) -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-hijau-alam">Pilihan Roti Sisa Terbaru</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card Produk 1 -->
+                <div class="bg-cream-tepung rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="h-40 bg-gray-300 flex items-center justify-center text-sm font-semibold text-gray-500">
+                        [Gambar Roti Tawar]
+                    </div>
+                    <div class="p-4">
+                        <span class="inline-block bg-gandum text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">Mendekati Expired</span>
+                        <h4 class="text-lg font-bold text-coklat-organik mb-1">Roti Tawar Gandum</h4>
+                        <p class="text-sm text-gray-700">Jumlah: 50 kg</p>
+                        <p class="text-sm text-coklat-organik font-semibold mb-3">Toko Roti: Toko Sedap</p>
+                        <button class="w-full btn-hijau-alam text-white font-semibold py-2 rounded-lg transition duration-300 bg-hijau-alam">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card Produk 2 -->
+                <div class="bg-cream-tepung rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="h-40 bg-gray-300 flex items-center justify-center text-sm font-semibold text-gray-500">
+                        [Gambar Roti Manis Campur]
+                    </div>
+                    <div class="p-4">
+                        <span class="inline-block bg-gandum text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">Sisa Hari Ini</span>
+                        <h4 class="text-lg font-bold text-coklat-organik mb-1">Roti Manis Campur</h4>
+                        <p class="text-sm text-gray-700">Jumlah: 25 kg</p>
+                        <p class="text-sm text-coklat-organik font-semibold mb-3">Toko Roti: Bakery Jaya</p>
+                        <button class="w-full btn-hijau-alam text-white font-semibold py-2 rounded-lg transition duration-300 bg-hijau-alam">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card Produk 3 -->
+                <div class="bg-cream-tepung rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="h-40 bg-gray-300 flex items-center justify-center text-sm font-semibold text-gray-500">
+                        [Gambar Baguette/Roti Keras]
+                    </div>
+                    <div class="p-4">
+                        <span class="inline-block bg-gandum text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">Mendekati Expired</span>
+                        <h4 class="text-lg font-bold text-coklat-organik mb-1">Kulit Roti & Baguette</h4>
+                        <p class="text-sm text-gray-700">Jumlah: 75 kg</p>
+                        <p class="text-sm text-coklat-organik font-semibold mb-3">Toko Roti: Oven Hangat</p>
+                        <button class="w-full btn-hijau-alam text-white font-semibold py-2 rounded-lg transition duration-300 bg-hijau-alam">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Card Produk 4 -->
+                <div class="bg-cream-tepung rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+                    <div class="h-40 bg-gray-300 flex items-center justify-center text-sm font-semibold text-gray-500">
+                        [Gambar Donat/Pastry]
+                    </div>
+                    <div class="p-4">
+                        <span class="inline-block bg-gandum text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">Sisa Hari Ini</span>
+                        <h4 class="text-lg font-bold text-coklat-organik mb-1">Roti Pastry Manis</h4>
+                        <p class="text-sm text-gray-700">Jumlah: 40 kg</p>
+                        <p class="text-sm text-coklat-organik font-semibold mb-3">Toko Roti: Mama's Bread</p>
+                        <button class="w-full btn-hijau-alam text-white font-semibold py-2 rounded-lg transition duration-300 bg-hijau-alam">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#" class="text-hijau-alam border-2 border-hijau-alam font-bold py-3 px-8 rounded-xl transition duration-300 hover:bg-hijau-alam hover:text-white">
+                    Lihat Semua Penawaran
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Kenapa BreadCycle? -->
+    <section class="py-16 bg-hijau-alam-light-10">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-hijau-alam">Kenapa Memilih BreadCycle?</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Poin 1: Kurangi Sampah Roti -->
+                <div class="p-6 bg-white rounded-xl shadow-md flex flex-col items-center text-center">
+                    <div class="w-12 h-12 mb-4 text-gandum">
+                        <!-- Icon Garbage/Trash -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-coklat-organik">Kurangi Sampah Roti</h3>
+                    <p class="text-sm text-gray-600">Minimalkan limbah makanan yang berakhir di TPA, mendukung keberlanjutan.</p>
+                </div>
+
+                <!-- Poin 2: Hemat Biaya Pakan -->
+                <div class="p-6 bg-white rounded-xl shadow-md flex flex-col items-center text-center">
+                    <div class="w-12 h-12 mb-4 text-gandum">
+                        <!-- Icon Money/Saving -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V6m0 12v-2.25M15 11v-1m-4 1v-1m-4 5v-1m8 1v-1M7 21h10a2 2 0 002-2V9a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-coklat-organik">Hemat Biaya Pakan</h3>
+                    <p class="text-sm text-gray-600">Peternak mendapatkan sumber pakan berkualitas dengan harga yang lebih terjangkau.</p>
+                </div>
+
+                <!-- Poin 3: Proses Mudah -->
+                <div class="p-6 bg-white rounded-xl shadow-md flex flex-col items-center text-center">
+                    <div class="w-12 h-12 mb-4 text-gandum">
+                        <!-- Icon Check/Process -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-coklat-organik">Proses Mudah</h3>
+                    <p class="text-sm text-gray-600">Platform sederhana yang menghubungkan penjual dan pembeli dalam beberapa klik.</p>
+                </div>
+
+                <!-- Poin 4: Ramah Lingkungan -->
+                <div class="p-6 bg-white rounded-xl shadow-md flex flex-col items-center text-center">
+                    <div class="w-12 h-12 mb-4 text-gandum">
+                        <!-- Icon Leaf/Environment -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0zM12 6.5h.01M16.5 10.5h.01M7.5 10.5h.01"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-coklat-organik">Ramah Lingkungan</h3>
+                    <p class="text-sm text-gray-600">Mendukung ekonomi sirkular dan mengurangi jejak karbon industri makanan.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Audience Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-hijau-alam">Siapa yang Kami Layani?</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                
+                <!-- Card 1: Untuk Toko Roti -->
+                <div class="lg:w-1/2 p-8 md:p-12 bg-cream-tepung rounded-2xl shadow-xl relative overflow-hidden">
+                    <!-- Accent Garis Gandum -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gandum/50 rounded-full -mt-10 -mr-10"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-extrabold mb-4 text-coklat-organik">Untuk Toko Roti</h3>
+                        <p class="text-lg text-gray-700 mb-6">Ubah biaya pembuangan limbah menjadi sumber pendapatan baru. Bantu lingkungan sambil menyehatkan neraca bisnis Anda.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600 mb-8">
+                            <li>Kurangi biaya operasional.</li>
+                            <li>Dapatkan harga terbaik dari peternak.</li>
+                            <li>Laporan dampak lingkungan yang transparan.</li>
+                        </ul>
+                        <a href="#" class="inline-block btn-hijau-alam text-white font-bold py-3 px-8 rounded-xl shadow-md hover:shadow-lg transition duration-300 bg-hijau-alam">
+                            Jual Roti Sekarang
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Untuk Peternak -->
+                <div class="lg:w-1/2 p-8 md:p-12 bg-white rounded-2xl border-4 border-hijau-alam shadow-xl relative">
+                    <h3 class="text-3xl font-extrabold mb-4 text-coklat-organik">Untuk Peternak</h3>
+                    <p class="text-lg text-gray-700 mb-6">Akses pakan ternak bernutrisi tinggi dan murah dari sisa roti. Pangkas biaya pakan secara signifikan.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600 mb-8">
+                        <li>Pilihan roti beragam dari berbagai toko.</li>
+                        <li>Harga jauh lebih kompetitif.</li>
+                        <li>Pakan bernutrisi untuk ternak (ayam, sapi, dll.).</li>
+                    </ul>
+                    <a href="#" class="inline-block text-coklat-organik border-2 border-coklat-organik font-bold py-3 px-8 rounded-xl transition duration-300 hover:bg-coklat-organik hover:text-white">
+                        Cari Roti Pakan
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Testimoni -->
+    <section class="py-16 bg-coklat-organik-light-10">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-hijau-alam">Apa Kata Mitra Kami?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Testimoni 1 (Toko Roti) -->
+                <div class="bg-white p-6 rounded-xl border border-gandum/50 shadow-md">
+                    <p class="italic text-gray-800 mb-4">"Kami berhasil mengurangi limbah roti hingga 90% sejak bergabung. Selain itu, kami mendapat pemasukan tambahan. Ini solusi menang-menang yang luar biasa!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gandum rounded-full mr-3"></div>
+                        <div>
+                            <p class="font-bold text-coklat-organik">Pak Budi</p>
+                            <p class="text-sm text-gray-500">Pemilik Toko Roti "Rasa Mama"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimoni 2 (Peternak) -->
+                <div class="bg-white p-6 rounded-xl border border-gandum/50 shadow-md">
+                    <p class="italic text-gray-800 mb-4">"Biaya pakan ternak saya turun drastis, kualitasnya pun terjamin. Proses pembeliannya sangat mudah, tinggal pilih dan ambil. Sangat direkomendasikan!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-hijau-alam rounded-full mr-3"></div>
+                        <div>
+                            <p class="font-bold text-coklat-organik">Ibu Siti</p>
+                            <p class="text-sm text-gray-500">Peternak Ayam Kampung</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CTA Akhir -->
+    <section class="py-16 bg-hijau-alam">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-4xl font-extrabold text-white mb-4">Siap Bergabung dengan Gerakan BreadCycle?</h2>
+            <p class="text-xl text-white/90 mb-8">Mulailah hari ini dan ciptakan dampak positif bagi bisnis Anda dan lingkungan.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="bg-gandum btn-gandum text-hijau-alam font-bold py-3 px-8 rounded-xl transition duration-300 transform hover:scale-[1.05] shadow-lg">
+                    Daftar sebagai Toko Roti
+                </a>
+                <a href="#" class="text-white border-2 border-white font-bold py-3 px-8 rounded-xl transition duration-300 hover:bg-white hover:text-hijau-alam">
+                    Daftar sebagai Peternak
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="bg-coklat-organik py-10">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-cream-tepung">
+                
+                <!-- Kolom 1: Logo & Deskripsi -->
+                <div>
+                    <h3 class="text-2xl font-bold mb-3">BreadCycle</h3>
+                    <p class="text-sm text-cream-tepung/80">Menghubungkan sisa roti dengan kebutuhan pakan ternak untuk masa depan yang lebih hijau.</p>
+                </div>
+
+                <!-- Kolom 2: Tautan Cepat -->
+                <div>
+                    <h4 class="font-semibold mb-3 text-gandum">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm hover:text-gandum transition duration-200">Tentang Kami</a></li>
+                        <li><a href="#" class="text-sm hover:text-gandum transition duration-200">Cara Kerja</a></li>
+                        <li><a href="#" class="text-sm hover:text-gandum transition duration-200">Produk Roti</a></li>
+                        <li><a href="#" class="text-sm hover:text-gandum transition duration-200">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 3: Dukungan -->
+                <div>
+                    <h4 class="font-semibold mb-3 text-gandum">Dukungan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm hover:text-gandum transition duration-200">Pusat Bantuan</a></li>
+                        <li><a href="#" class="text-sm hover:text-gandum transition duration-200">Kebijakan Privasi</a></li>
+                        <li><a href="#" class="text-sm hover:text-gandum transition duration-200">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 4: Kontak -->
+                <div>
+                    <h4 class="font-semibold mb-3 text-gandum">Hubungi Kami</h4>
+                    <p class="text-sm">Email: info@breadcycle.id</p>
+                    <p class="text-sm">Telepon: +62 812-345-6789</p>
+                </div>
+
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-cream-tepung/20 text-center">
+                <p class="text-xs text-cream-tepung/70">&copy; 2025 BreadCycle. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
